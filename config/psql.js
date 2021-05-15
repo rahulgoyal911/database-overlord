@@ -12,9 +12,7 @@ const psqlConfig = {
     });
     try {
       await client.connect();
-      logger.info('db connected, now creating tables');
-      logger.info('created tables, now creating indexes');
-      logger.info('created indexes');
+      logger.info('db connected');
       return client;
     } catch (error) {
       logger.error('error while connecting db', error);
