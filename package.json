@@ -18,8 +18,10 @@
   },
   "homepage": "https://github.com/rahulgoyal911/database-overlord#readme",
   "dependencies": {
+    "cassandra-driver": "^4.6.2",
     "dotenv": "^9.0.2",
     "mongodb": "^3.6.6",
+    "mysql": "^2.18.1",
     "pg": "^8.6.0",
     "winston": "^3.3.3"
   },
