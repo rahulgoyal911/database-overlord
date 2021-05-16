@@ -3,10 +3,10 @@ const { logger } = require('../utils/logger');
 
 const psqlConfig = {
   async connect(user, host, database, password, port) {
-    const client = new Client({
-      user, host, database, password, port,
-    });
     try {
+      const client = new Client({
+        user, host, database, password, port,
+      });
       await client.connect();
       logger.info('Connected to psql');
       return client;

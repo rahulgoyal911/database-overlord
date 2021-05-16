@@ -3,12 +3,13 @@ const { logger } = require('../utils/logger');
 
 const mysqlConfig = {
   async connect(user, host, database, password, port) {
-    const client = mysql.createConnection({
-      user, host, database, password, port,
-    });
     try {
+      const client = mysql.createConnection({
+        user, host, database, password, port,
+      });
       await client.connect();
-      logger.info('Connected to mysql');
+      if (client.state === 'disconnected') throw new Error('State is disconnected');
+      logger.info('Connected to mysql...');
       return client;
     } catch (err) {
       logger.error({ message: new Error(err) });

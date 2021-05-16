@@ -1,5 +1,6 @@
 /* eslint-disable no-param-reassign */
 const { createLogger, format, transports } = require('winston');
+require('dotenv').config();
 
 const { timestamp, prettyPrint, errors } = format;
 
@@ -20,9 +21,9 @@ const logger = createLogger({
   transports: [new transports.Console(), new transports.File({ filename: 'service.log' })],
   exitOnError: false,
   defaultMeta: {
-    environment: process.env.ENVIRONMENT,
-    service_name: process.env.SERVICE_NAME,
-    port: process.env.PORT,
+    environment: process.env.enviornment,
+    service_name: process.env.service_name,
+    port: process.env.port,
   },
 });
 

@@ -3,13 +3,13 @@ const { logger } = require('../utils/logger');
 
 const cassandraConfig = {
   async connect(hosts, datacenter, username, password) {
-    const client = new cassandra.Client({
-      contactPoints: hosts,
-      localDataCenter: datacenter,
-      authProvider: new cassandra.auth
-        .PlainTextAuthProvider(username, password),
-    });
     try {
+      const client = new cassandra.Client({
+        contactPoints: hosts,
+        localDataCenter: datacenter,
+        authProvider: new cassandra.auth
+          .PlainTextAuthProvider(username, password),
+      });
       await client.connect();
       logger.info('Connected to cassandra');
       return client;
