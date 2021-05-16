@@ -1,4 +1,5 @@
 const { MongoClient } = require('mongodb');
+const { disconnect } = require('node:process');
 const { logger } = require('../utils/logger');
 
 const mongoConfig = {
@@ -16,8 +17,9 @@ const mongoConfig = {
       return null;
     }
   },
-  async disConnectDB(client) {
+  async disconnect(client) {
     try {
+      if (client == null) return;
       await client.close();
       logger.info('Db disconnected');
     } catch (err) {

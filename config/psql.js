@@ -4,11 +4,7 @@ const { logger } = require('../utils/logger');
 const psqlConfig = {
   async connect(user, host, database, password, port) {
     const client = new Client({
-      user,
-      host,
-      database,
-      password,
-      port,
+      user, host, database, password, port,
     });
     try {
       await client.connect();
@@ -19,8 +15,9 @@ const psqlConfig = {
       return null;
     }
   },
-  async disConnectDB(client) {
+  async disconnect(client) {
     try {
+      if (client == null) return;
       await client.end();
       await client.release();
       logger.info('Db disconnected');
