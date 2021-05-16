@@ -8,10 +8,10 @@ const mysqlConfig = {
     });
     try {
       await client.connect();
-      logger.info('db connected');
+      logger.info('Connected to mysql');
       return client;
-    } catch (error) {
-      logger.error('error while connecting db', error);
+    } catch (err) {
+      logger.error({ message: new Error(err) });
       return null;
     }
   },
@@ -20,7 +20,7 @@ const mysqlConfig = {
       if (client == null) return;
       await client.end();
       await client.release();
-      logger.info('Db disconnected');
+      logger.info('Disconnected to mysql');
     } catch (err) {
       logger.error({ message: new Error(err) });
     }

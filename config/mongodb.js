@@ -1,5 +1,4 @@
 const { MongoClient } = require('mongodb');
-const { disconnect } = require('node:process');
 const { logger } = require('../utils/logger');
 
 const mongoConfig = {
@@ -10,7 +9,7 @@ const mongoConfig = {
       await client.connect();
       // Establish and verify connection
       await client.db('admin').command({ ping: 1 });
-      logger.info('Connected to mongodb uri');
+      logger.info('Connected to mongodb');
       return client;
     } catch (err) {
       logger.error({ message: new Error(err) });
@@ -21,7 +20,7 @@ const mongoConfig = {
     try {
       if (client == null) return;
       await client.close();
-      logger.info('Db disconnected');
+      logger.info('Disconnected to mongodb');
     } catch (err) {
       logger.error({ message: new Error(err) });
     }
